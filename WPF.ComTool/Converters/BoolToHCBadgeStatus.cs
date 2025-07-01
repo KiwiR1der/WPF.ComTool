@@ -1,18 +1,18 @@
-﻿using LayUI.Wpf.Enum;
+﻿using HandyControl.Data;
 using System.Globalization;
 using System.Windows.Data;
 
 namespace WPF.ComTool.Converters
 {
-    public class BoolToRippleType : IValueConverter
+    public class BoolToHCBadgeStatus : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null && bool.TryParse(value.ToString(), out bool result))
             {
-                return result ? RippleStyle.Auto : RippleStyle.Click;
+                return result ? BadgeStatus.Processing : BadgeStatus.Dot;
             }
-            return RippleStyle.Default;
+            return BadgeStatus.Dot;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

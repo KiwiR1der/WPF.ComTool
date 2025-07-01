@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.IO.Ports;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using WPF.ComTool.Enums;
 
@@ -95,6 +96,8 @@ namespace WPF.ComTool.ViewModels
 
         private void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            Thread.Sleep(50);  // 添加一定的延时，防止数据丢失
+            //int length = _serialPort.ReadBufferSize;
             int length = _serialPort.BytesToRead;
             byte[] readBuffer = new byte[length];
             _serialPort.Read(readBuffer, 0, readBuffer.Length);
@@ -102,15 +105,21 @@ namespace WPF.ComTool.ViewModels
 
             ReceiveCount += _serialPort.ReceivedBytesThreshold;
 
+            string tempDataRecieved = string.Empty;
+
             if (ReceiveFormatHex)
             {
-                DataReceived += ByteHelper.ByteToString(readBuffer, true);
+                tempDataRecieved = BitConverter.ToString(readBuffer, 0).Replace("-", " ");
+                //DataReceived += ByteHelper.ByteToString(readBuffer, true);
             }
             else
             {
-                DataReceived += Encoding.Default.GetString(readBuffer);
+                tempDataRecieved += Encoding.Default.GetString(readBuffer);
                 //DataReceived = Encoding.UTF8.GetString(readBuffer);
             }
+
+            string receivedTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            DataReceived += $"[{receivedTime}]# 接收\n{tempDataRecieved}\n";
         }
 
         public bool Close()
@@ -151,6 +160,10 @@ namespace WPF.ComTool.ViewModels
                         _serialPort.Write(DataSend);
                         SendCount = DataSend.Length;
                     }
+
+                    string receivedTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                    DataReceived += $"[{receivedTime}]# 发送\n{DataSend}\n";
+
                 }
                 // 信使
             }

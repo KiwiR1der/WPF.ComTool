@@ -5,10 +5,14 @@
         <Setter Property="FontFamily" Value="HarmonyOS Sans SC" />
     </Style>
 
-    <Style TargetType="TextBlock">
+    <Style BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
 
+        <Setter Property="FontFamily" Value="HarmonyOS Sans SC" />
+    </Style>
+
+    <Style BasedOn="{StaticResource TextBoxBaseStyle}" TargetType="TextBox">
         <Setter Property="FontFamily" Value="HarmonyOS Sans SC" />
     </Style>
 

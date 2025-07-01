@@ -12,6 +12,9 @@ namespace WPF.ComTool.ViewModels
         [ObservableProperty]
         private SerialSessionViewModel _currentSession;
 
+        private string _repoLink;
+        private string _cnblogLink;
+
         public MainViewModel()
         {
             SerialConfig = new SerialConfigViewModel();
@@ -20,6 +23,8 @@ namespace WPF.ComTool.ViewModels
             {
                 CurrentSession.Port = SerialConfig.Port[0];
             }
+            _repoLink = "https://github.com/cr0vL3Y/WPF.ComTool";
+            _cnblogLink = "https://www.cnblogs.com/PixelKiwi";
         }
 
         [RelayCommand]
@@ -42,5 +47,25 @@ namespace WPF.ComTool.ViewModels
 
         [RelayCommand]
         private void ClearReceiveCount() => CurrentSession.ClearReceiveCount();
+
+        [RelayCommand]
+        private void OpenRepoLink()
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = _repoLink,
+                UseShellExecute = true
+            });
+        }
+
+        [RelayCommand]
+        private void OpenBlogLink()
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = _cnblogLink,
+                UseShellExecute = true
+            });
+        }
     }
 }
