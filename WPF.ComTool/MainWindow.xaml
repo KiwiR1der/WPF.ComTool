@@ -18,7 +18,7 @@
         mc:Ignorable="d">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="20"
+        <WindowChrome CaptionHeight="10"
                       CornerRadius="10"
                       GlassFrameThickness="5"
                       NonClientFrameEdges="None"
@@ -36,7 +36,7 @@
         <convert:BoolToHCBadgeStatus x:Key="BoolToHCBadgeStatus" />
     </Window.Resources>
 
-    <Border Margin="0,20,0,0" CornerRadius="10">
+    <Border Margin="0,10,0,0" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280" />
@@ -66,6 +66,7 @@
                     <Button x:Name="btnMinimize"
                             HorizontalAlignment="Right"
                             hc:IconElement.Geometry="{StaticResource WindowMinGeometry}"
+                            BorderThickness="0"
                             Click="btnMinimize_Click"
                             Cursor="Hand" />
                     <Button x:Name="btnClose"
@@ -74,6 +75,7 @@
                             hc:BackgroundSwitchElement.MouseDownBackground="PaleVioletRed"
                             hc:BackgroundSwitchElement.MouseHoverBackground="Red"
                             hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+                            BorderThickness="0"
                             Click="btnClose_Click"
                             Cursor="Hand" />
                 </StackPanel>
@@ -168,7 +170,7 @@
                                   Content="十六进制显示"
                                   IsChecked="{Binding CurrentSession.SendFormatHex}" />
                         <Button Command="{Binding ClearDataSendCommand}"
-                                Content="清发送区"
+                                Content="清空发送区"
                                 Cursor="Hand"
                                 Style="{StaticResource ButtonPrimary}" />
                     </UniformGrid>
