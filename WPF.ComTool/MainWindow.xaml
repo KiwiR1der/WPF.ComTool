@@ -241,7 +241,7 @@
                            Text="正在加载当前时间..." />
                 <TextBlock Grid.Column="1"
                            FontWeight="Bold"
-                           Text="ComTool by cr0vL3Y">
+                           Text="Developed by KiwiR1der">
                     <TextBlock.Foreground>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                             <GradientStop Offset="0.0" Color="#17ead9" />
